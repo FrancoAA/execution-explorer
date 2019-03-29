@@ -130,6 +130,10 @@ $label-border-radius-rounded: 200px;
           border-radius: 0;
         }
       }
+      &.phases-container {
+        border: 2px solid #e5e5e5;
+        border-radius: 5px;
+      }
     }
     
     .label {

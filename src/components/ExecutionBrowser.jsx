@@ -8,6 +8,10 @@ function randomChoice(choices) {
   return choices[index];
 }
 
+function randomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
 class RunItem extends Component {
   state = {
     runId: 1,
@@ -124,6 +128,16 @@ class AssetItem extends Component {
 }
 
 class ResultItem extends Component {
+  state = {
+    show: false
+  };
+
+  clickHandler = () => {
+    this.setState(prev => ({
+      show: !prev.show
+    }));
+  };
+
   /**
    * resultado de la ejecucion de un scenario en un determinado asset, deberia si fue una ejecucion exitosa o no y al hacer click
    * desplegar un side panel en el cual se muestren las fases con sus resultados y logs
@@ -133,7 +147,7 @@ class ResultItem extends Component {
 
     return (
       <div className="entry" {...attrs}>
-        <span className="label">
+        <span onClick={this.clickHandler} style={{ cursor: 'pointer' }} className="label">
           {name}
           <div
             className={`scenario-outcome ${(outcome === 'Passed' && 'fa fa-check-circle-o') ||
@@ -141,6 +155,84 @@ class ResultItem extends Component {
               (outcome === 'Errored' && 'fa fa-exclamation-triangle')}`}
           />
         </span>
+        {this.state.show && (
+          <div className="branch">
+            <PhasesContainer name={name} outcome={outcome} />
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+
+class PhasesContainer extends Component {
+  state = {
+    hasMore: true,
+    phases: []
+  };
+
+  getPhases(count) {
+    const phases = [];
+    for (let i = 0; i < count; i++) {
+      phases.push({
+        name: `Phase ${i}`,
+        desc: 'Lorem ipsum dolor amet',
+        outcome: randomChoice(['Passed', 'Failed', 'Errored'])
+      });
+    }
+    return phases;
+  }
+
+  seeMoreHandler = () => {
+    this.setState(prev => ({
+      hasMore: false,
+      phases: [...prev.phases, this.getPhases(randomInt(5))]
+    }));
+  };
+
+  componentDidMount() {
+    this.setState({
+      phases: this.getPhases(10)
+    });
+  }
+
+  render() {
+    const { id, name, runId, outcome, ...attrs } = this.props;
+
+    return (
+      <div className="entry sole phases-container" {...attrs}>
+        {/* <span className="label">{name}</span> */}
+        {this.state.phases.length > 0 && (
+          <div className="branch">
+            {/* {this.state.phases.map((phaseInfo, key) => (
+              <PhaseItem key={key} {...phaseInfo} />
+            ))} */}
+            {this.state.phases.reduce((Prev, phaseInfo, key) => {
+              if (Prev) {
+                return <Prev children={<PhaseItem {...phaseInfo} key={key} />} />;
+              } else {
+                return <PhaseItem key={key} {...phaseInfo} />;
+              }
+            })}
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+
+class PhaseItem extends Component {
+  state = {
+    phases: []
+  };
+
+  render() {
+    const { name, outcome, children, ...attrs } = this.props;
+
+    return (
+      <div className="entry" {...attrs}>
+        <span className="label">{name}</span>
+        {children && <div className="branch">{children}</div>}
       </div>
     );
   }
