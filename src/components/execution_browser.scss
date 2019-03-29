@@ -1,0 +1,202 @@
+//------- {{ Variables }} -------//
+
+$border: #e5e5e5;
+$font: black;
+$background: #fafafa;
+$pass: rgb(110, 212, 110);
+$fail: rgb(186, 42, 42);
+$error: rgb(245, 184, 2);
+
+$horizontal-gutter: 100px;
+
+$border-radius: 10px;
+
+$entry-min-height: 80px;
+
+$label-width: 150px;
+$label-height: 30px;
+$label-border-radius: 15px;
+
+// rounded styling
+
+$horizontal-gutter-rounded: 100px;
+
+$label-width-rounded: 60px;
+$label-height-rounded: 60px;
+$label-border-radius-rounded: 200px;
+
+
+.execution-browser {
+  padding: 50px;
+
+  .fa {
+    font-size: 24px;
+    vertical-align: middle;
+  }
+  
+  .graph-container {
+    position: relative;
+    
+    color: black;
+    background: $background;
+  
+    .branch, .branch:before, .branch:after, 
+    .entry, .entry:before, .entry:after,
+    .label, .label:before, .label:after {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+  
+    .branch {
+      position: relative;
+      margin-left: $horizontal-gutter + $label-width;
+      &:before {
+        content: "";
+        width: $horizontal-gutter / 2;
+        border-top: 2px solid $border;
+        position: absolute;
+        left: -$horizontal-gutter;
+        top: 50%;
+        margin-top: 1px;
+      }
+      
+      &.rounded {
+        margin-left: $horizontal-gutter-rounded + $label-width-rounded;
+        &:before {
+          content: "";
+          width: $horizontal-gutter-rounded / 2;
+          left: -$horizontal-gutter-rounded;
+          top: 50%;
+        }
+      }
+    }
+
+    
+    .entry {
+      position: relative;
+      min-height: $entry-min-height;
+      &:before {
+        content: "";
+        height: 100%;
+        border-left: 2px solid $border;
+        position: absolute;
+        left: -($horizontal-gutter / 2);
+      }
+      &:after {
+        content: "";
+        width: $horizontal-gutter / 2;
+        border-top: 2px solid $border;
+        position: absolute;
+        left: -($horizontal-gutter / 2);
+        top: 50%;
+        margin-top: 1px;
+      }
+      &:first-child {
+        &:before {
+          width: $border-radius;
+          height: 50%;
+          top: 50%;
+          margin-top: 2px;
+          border-radius: $border-radius 0 0 0;
+        }
+        &:after {
+          height: $border-radius;
+          border-radius: $border-radius 0 0 0;
+        }
+      }
+      &:last-child {
+        &:before {
+          width: $border-radius;
+          height: 50%;
+          border-radius: 0 0 0 $border-radius;
+        }
+        &:after {
+          height: $border-radius;
+          border-top: none;
+          border-bottom: 2px solid $border;
+          border-radius: 0 0 0 $border-radius;
+          margin-top: -$border-radius + 1px;
+        }
+      }
+      &.sole {
+        &:before {
+          display: none;
+        }
+        &:after {
+          width: $horizontal-gutter / 2;
+          height: 0;
+          margin-top: 1px;
+          border-radius: 0;
+        }
+      }
+    }
+    
+    .label {
+      display: block;
+      background-color: white;
+      font-size: 14px;
+      min-width: $label-width;
+      padding: 5px 10px;
+      line-height: $label-height - 5px * 2;
+      text-align: center;
+      border: 2px solid $border;
+      border-radius: $label-border-radius;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      margin-top: -($label-height / 2);
+
+      &.rounded {
+        padding: 0;
+        margin-top: -($label-height-rounded / 2);
+        min-width: $label-width-rounded;
+        height: $label-height-rounded;
+        line-height: $label-height-rounded - 5px;
+        // line-height: $label-height-rouned - 5px * 2;
+        border-radius: $label-border-radius-rounded;
+      }
+
+      &.asset {
+        cursor: pointer;
+      }
+
+      .status-icon {
+        display: block;
+        top: 0px;
+        right: -5px;
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        &.active {
+          background-color: $pass;
+        }
+        &.inactive {
+          background-color: $fail;
+        }
+      }
+
+      .scenario-outcome {
+        position: absolute;
+        right: 9px;
+        vertical-align: middle;
+        font-size: 14px;
+        line-height: 20px;
+        &.fa-check-circle-o, &.fa-times-circle-o {
+          font-size: 18px;
+        }
+        &.fa-check-circle-o {
+          color: $pass;
+        }
+        &.fa-times-circle-o {
+          color: $fail;
+        }
+        &.fa-exclamation-triangle {
+          color: $error;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

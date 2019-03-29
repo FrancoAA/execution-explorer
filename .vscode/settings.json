@@ -1,0 +1,8 @@
+{
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "prettier.singleQuote": true,
+    "prettier.stylelintIntegration": true,
+    "editor.tabSize": 2,
+    "prettier.printWidth": 100
+}
