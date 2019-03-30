@@ -27,7 +27,10 @@ $label-border-radius-rounded: 200px;
 
 
 .execution-browser {
+  position: absolute;
+  width: 100%;
   padding: 50px;
+  background: $background;
 
   .fa {
     font-size: 24px;
@@ -38,7 +41,6 @@ $label-border-radius-rounded: 200px;
     position: relative;
 
     color: black;
-    background: $background;
 
     .branch, .branch:before, .branch:after,
     .entry, .entry:before, .entry:after,
