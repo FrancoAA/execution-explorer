@@ -203,17 +203,12 @@ class PhasesContainer extends Component {
       <div className="entry sole phases-container" {...attrs}>
         {/* <span className="label">{name}</span> */}
         {this.state.phases.length > 0 && (
-          <div className="branch">
-            {/* {this.state.phases.map((phaseInfo, key) => (
-              <PhaseItem key={key} {...phaseInfo} />
-            ))} */}
-            {this.state.phases.reduce((Prev, phaseInfo, key) => {
-              if (Prev) {
-                return <Prev children={<PhaseItem {...phaseInfo} key={key} />} />;
-              } else {
-                return <PhaseItem key={key} {...phaseInfo} />;
-              }
-            })}
+          <div className="">
+            <ul className="phase-list">
+              {this.state.phases.map((phaseInfo, key) => (
+                <PhaseItem key={key} {...phaseInfo} />
+              ))}
+            </ul>
           </div>
         )}
       </div>
@@ -230,10 +225,9 @@ class PhaseItem extends Component {
     const { name, outcome, children, ...attrs } = this.props;
 
     return (
-      <div className="entry" {...attrs}>
-        <span className="label">{name}</span>
-        {children && <div className="branch">{children}</div>}
-      </div>
+      <li className="phase-item" {...attrs}>
+        <span className="">{name}</span>
+      </li>
     );
   }
 }

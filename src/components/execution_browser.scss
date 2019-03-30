@@ -33,21 +33,21 @@ $label-border-radius-rounded: 200px;
     font-size: 24px;
     vertical-align: middle;
   }
-  
+
   .graph-container {
     position: relative;
-    
+
     color: black;
     background: $background;
-  
-    .branch, .branch:before, .branch:after, 
+
+    .branch, .branch:before, .branch:after,
     .entry, .entry:before, .entry:after,
     .label, .label:before, .label:after {
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
     }
-  
+
     .branch {
       position: relative;
       margin-left: $horizontal-gutter + $label-width;
@@ -60,7 +60,7 @@ $label-border-radius-rounded: 200px;
         top: 50%;
         margin-top: 1px;
       }
-      
+
       &.rounded {
         margin-left: $horizontal-gutter-rounded + $label-width-rounded;
         &:before {
@@ -72,7 +72,7 @@ $label-border-radius-rounded: 200px;
       }
     }
 
-    
+
     .entry {
       position: relative;
       min-height: $entry-min-height;
@@ -135,7 +135,7 @@ $label-border-radius-rounded: 200px;
         border-radius: 5px;
       }
     }
-    
+
     .label {
       display: block;
       background-color: white;
@@ -201,6 +201,19 @@ $label-border-radius-rounded: 200px;
           font-size: 16px;
         }
       }
+    }
+  }
+
+  .phase-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    .phase-item {
+      display: inline;
+      padding: 0 10px;
     }
   }
 }
