@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
 import './App.scss';
-import ExecutionBrowser from './components/ExecutionBrowser';
+
+import ExecutionBrowser from './components/ExecutionBrowser/ExecutionBrowser';
 
 class App extends Component {
   render() {

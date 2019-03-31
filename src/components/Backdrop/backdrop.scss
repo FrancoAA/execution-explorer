@@ -1,0 +1,17 @@
+.backdrop {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  opacity: 0;
+  background-color: black;
+  z-index: 1;
+  transition: opacity 300ms;
+  visibility: hidden;
+
+  &.show {
+    visibility: visible;
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,30 @@
+.side-drawer {
+  position: fixed;
+  top: 0px;
+  height: 100vh;
+  width: 500px;
+  max-width: 80%;
+  right: -1000px;
+  z-index: 2;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.26);
+  transition: all 300ms;
+
+  &.open {
+    right: 0px;
+  }
+  
+  .side-drawer-header {
+    position: relative;
+    .close-btn {
+      position: absolute;
+      right: 15px;
+      cursor: pointer;
+    }
+  }
+
+  .side-drawer-content {
+    padding: 15px;
+    text-align: left;
+  }
+}

@@ -1,0 +1,68 @@
+$pass: rgb(110, 212, 110);
+$fail: rgb(186, 42, 42);
+$error: rgb(245, 184, 2);
+
+.timeline {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-left: 30px;
+
+  .timeline-event {
+    display: block;
+    position: relative;
+    padding-bottom: 15px;
+    
+    .timeline-event-header {
+      margin-top: 0px;
+    }
+
+    &::before {
+      position: absolute;
+      top: 4px;
+      left: -20px;
+      height: 100%;
+      margin-left: -3px;
+      border-left: 3px solid #e4e4e4;
+      content: "";
+    }
+
+    &::after {
+      position: absolute;
+      top: 4px;
+      box-shadow: 0 0 0 4px #fff;
+      font-family: "FontAwesome";
+      left: -29px;
+      background-color: #fff;
+      content: "\f111";
+    }
+
+    &.success {
+      &::after {
+        color: $pass;
+        content: "\f00c";
+      }
+    }
+
+    &.warning {
+      &::after {
+        color: $error;
+        content: "\f071";
+      }
+    }
+
+    &.error {
+      &::after {
+        color: $fail;
+        content: "\f05e";
+      }
+    }
+
+    &.failed {
+      &::after {
+        color: $fail;
+        content: "\f06a";
+      }
+    }
+  }
+}
